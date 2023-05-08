@@ -5,6 +5,8 @@ Bringa is my first chatbot project using nltk + keras + flask
 
 As intents I used some alpaca_gpt4_data and my own list of tags
 
+![Screenshot](/test/Screenshot.png)
+
 # ENV:
 
 Bringa was tested on Windows 11 using python 3.10
