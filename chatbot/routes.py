@@ -119,10 +119,6 @@ def get_response(return_list,intents_json,text):
 		query = query.replace(' ','+')
 		for j in google(query, advanced=True, num_results=3,sleep_interval=1):
 			j=(str(j))
-		# j= j.replace('SearchResult(','')
-		# j= j.replace(',','\n')
-		# j= j.replace(')','')
-		# j= j.replace('=',' : ')
 		print('this is Last result: '+j)
 		return j, 'google'
 	
@@ -155,22 +151,13 @@ def get_response(return_list,intents_json,text):
 		x=(str(x).replace('None','0'))
 		print(str(x))
 		return x,'soccer'
-	
-	# if tag=='timer':
-		# #mixer.init()
-		# x=text.split(':')[1].strip()
-		# time.sleep(float(x)*60)
-		# #mixer.music.load('Handbell-ringing-sound-effect.mp3')
-		# #mixer.music.play()
-		# x='Timer ringing...'
-		# return x,'timer'
+
 	
 	if tag=='wikipedia':
 		x=text.split(':')[1].strip()
 		x = x.replace(' ','+')
 		subject = x
 		x=wikipedia.summary(subject)+'\n <a target="_blank" href="'+wikipedia.page(subject).url+'">'+wikipedia.page(subject).url+'</a>'
-		#print(wikipedia.summary(subject, sentences=2))
 		return x,'wikipedia'
 	
 	if tag=="youtube":
@@ -186,7 +173,6 @@ def get_response(return_list,intents_json,text):
 				origin = (customSearch.result()['result'][i]['link'])
 				origin = origin.replace('watch?v=','embed/')
 				x+= '<iframe width="420" height="315" frameborder="0" src="'+origin+'"></iframe>'+'\n'
-				#x+= (customSearch.result()['result'][i]['link'])+'\n'
 			except Exception as inst:
 				break
 		return x,'youtube'
@@ -280,16 +266,9 @@ def get_response(return_list,intents_json,text):
 	return result,tag
 
 def response(text):
-	#try:
 	return_list=predict_class(text,model)
-	#print(return_list)
 	response,_=get_response(return_list,intents,text)
-	#print(response)
 	return response
-	# except Exception as e:
-		# print(str(e))
-		# response = "sorry an error occured, please try again"
-		# return response
 		
 
 @app.route('/',methods=['GET','POST'])

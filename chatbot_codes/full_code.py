@@ -83,8 +83,8 @@ adam=keras.optimizers.Adam(0.001)
 model.compile(optimizer=adam,loss='categorical_crossentropy',metrics=['accuracy'])
 #model.fit(np.array(X_train),np.array(y_train),epochs=200,batch_size=10,verbose=1)
 # !!!!! Enable training mode here !!!!!
-# weights=model.fit(np.array(X_train),np.array(y_train),epochs=1000,batch_size=10,verbose=1)	 
-# model.save('mymodel.h5',weights)
+weights=model.fit(np.array(X_train),np.array(y_train),epochs=200,batch_size=10,verbose=1)	 
+model.save('mymodel.h5',weights)
 
 from keras.models import load_model
 model = load_model('mymodel.h5')
@@ -204,17 +204,9 @@ def get_response(return_list,intents_json):
 		for i in range(10):
 			song=chart[i]
 			print(song.title,'- ',song.artist)
-	
-	# if tag=='timer':		
-		# mixer.init()
-		# x=input('Minutes to timer..')
-		# time.sleep(float(x)*60)
-		# mixer.music.load('Handbell-ringing-sound-effect.mp3')
-		# mixer.music.play()
 		
 	if tag=='youtube':
 		query = input("Enter Your Search Here: ")
-		#query=text.split(':')[1].strip()
 		query = query.replace(' ','+')
 		customSearch = VideosSearch(query, limit = 10)
 		for i in range(10):
